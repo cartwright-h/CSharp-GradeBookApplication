@@ -21,7 +21,7 @@ namespace GradeBook.GradeBooks
                 throw new InvalidOperationException();
 
             // find 20% of students
-            int gradeBoundaryNumber = (int)Math.Ceiling((double)(studentCount / 5));
+            int threshold = (int)Math.Ceiling(studentCount * 0.2);
 
             // sort the grades
             List<Student> sortedList = Students;
@@ -31,15 +31,16 @@ namespace GradeBook.GradeBooks
             {
                 gradeList.Add(item.AverageGrade);
             }
+            gradeList.Reverse();
 
             // find where averageGrade sits in the list of grades
-            if (averageGrade >= gradeList[gradeBoundaryNumber])
+            if (averageGrade >= gradeList[threshold - 1])
                 return 'A';
-            else if (averageGrade >= gradeList[gradeBoundaryNumber * 2])
+            else if (averageGrade >= gradeList[(threshold * 2) - 1])
                 return 'B';
-            else if (averageGrade >= gradeList[gradeBoundaryNumber * 3])
+            else if (averageGrade >= gradeList[(threshold * 3) - 1])
                 return 'C';
-            else if (averageGrade >= gradeList[gradeBoundaryNumber * 4])
+            else if (averageGrade >= gradeList[(threshold * 4) - 1])
                 return 'D';
             else
                 return 'F';
