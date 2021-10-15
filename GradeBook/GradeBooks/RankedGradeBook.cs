@@ -18,17 +18,15 @@ namespace GradeBook.GradeBooks
         {
             int studentCount = Students.Count;
             if (studentCount < 5)
-            {
-                throw InvalidOperationException;
-            }
+                throw new InvalidOperationException();
 
             // find 20% of students
-            int gradeBoundaryNumber = Math.Ceiling(studentCount / 5);
+            int gradeBoundaryNumber = (int)Math.Ceiling((double)(studentCount / 5));
 
             // sort the grades
             List<Student> sortedList = Students;
             sortedList.Sort();
-            List<double> gradeList = new List<double>;
+            List<double> gradeList = new List<double>();
             foreach (Student item in sortedList)
             {
                 gradeList.Add(item.AverageGrade);
