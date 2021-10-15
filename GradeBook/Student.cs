@@ -7,7 +7,7 @@ using GradeBook.Enums;
 
 namespace GradeBook
 {
-    public class Student
+    public class Student : IComparable
     {
         public string Name { get; set; }
         public StudentType Type { get; set; }
@@ -44,6 +44,17 @@ namespace GradeBook
         public void RemoveGrade(double grade)
         {
             Grades.Remove(grade);
+        }
+
+        public int CompareTo(object obj)
+        {
+            var otherStudent = (Student)obj;
+            if (AverageGrade > otherStudent.AverageGrade)
+                return 1;
+            else if (AverageGrade < otherStudent.AverageGrade)
+                return -1;
+            else
+                return 0;
         }
     }
 }
